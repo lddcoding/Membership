@@ -70,6 +70,7 @@ if check_value_exists("email", email) == True:
         if st.button('Get the monthly membership'):
             session_monthly = create_checkout_session('price_1NLE87B82uB4EE73r80KE89a', user_data['email'])
             redirect_to_url(session_monthly.url)
+            st.write(user_data['email'])
 
 
     with col2:
