@@ -55,7 +55,6 @@ if check_value_exists("email", email) == True:
     index = find_dictionary_index(content, email)
     key_db = content[index]['key']
     user_data = db.get(key_db)
-    st.write(user_data)
 
     st.title("Memberships")
 
