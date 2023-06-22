@@ -10,9 +10,6 @@ deta = Deta(detakey)
 db = deta.Base("ticketscrappertest1")
 stripe.api_key = 'sk_test_51NKnf0B82uB4EE73dTW5Hcyrd1WkYVLAhWhRF4S3W51cy1FKp8BXCXFn2kVjWBAfJv0EfnRJj6wCcm1eKulcwgb200iDLos5GF'
 
-def redirect_to_url(url):
-    webbrowser.open_new_tab(url)
-
 def create_checkout_session(price_id, email):
     session = stripe.checkout.Session.create(
         payment_method_types=['card'],
@@ -67,18 +64,15 @@ if check_value_exists("email", email) == True:
     with col1:
         st.subheader('Monthly Membership:')
         st.write('Get access for ...')
-        if st.button('Get the monthly membership'):
-            session_monthly = create_checkout_session('price_1NLE87B82uB4EE73r80KE89a', user_data['email'])
-            webbrowser.open_new_tab(session_monthly.url)
-            st.write(user_data['email'])
+        session_monthly = create_checkout_session('price_1NLE87B82uB4EE73r80KE89a', user_data['email'])
+        st.markdown(f'<a href="{session_monthly.url}" target="_blank">Open URL</a>', unsafe_allow_html=True)
 
 
     with col2:
         st.subheader('Annualy Membership:')
         st.write('Get access for ...')
-        if st.button('Get the annual membership'):
-            session_annualy = create_checkout_session('price_1NLE8KB82uB4EE73Tph9Qghz', user_data['email'])
-            redirect_to_url(session_annualy.url)
+        session_annualy = create_checkout_session('price_1NLE8KB82uB4EE73Tph9Qghz', user_data['email'])
+        st.markdown(f'<a href="{session_annualy.url}" target="_blank">Open URL</a>', unsafe_allow_html=True)
 
 else:
     st.error("The email wasn't found in the database")
