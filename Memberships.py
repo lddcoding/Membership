@@ -69,8 +69,7 @@ if check_value_exists("email", email) == True:
         st.write('Get access for ...')
         if st.button('Get the monthly membership'):
             session_monthly = create_checkout_session('price_1NLE87B82uB4EE73r80KE89a', user_data['email'])
-            new_tab_string = f"<a href='{session_monthly.url}' target='_blank'></a>"
-            st.markdown(new_tab_string, unsafe_allow_html=True)
+            webbrowser.open_new_tab(session_monthly.url)
             st.write(user_data['email'])
 
 
