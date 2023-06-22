@@ -34,6 +34,12 @@ def check_value_exists(column_name, value):
     else:
         return False #value does not exist
 
+def find_dictionary_index(dictionaries, email):
+    for index, dictionary in enumerate(dictionaries):
+        if dictionary.get('email') == email:
+            return index
+    return -1
+
 
 # Extract the encoded email and password from the URL parameters
 encoded_email = st.experimental_get_query_params().get("email", [""])[0]
@@ -45,7 +51,11 @@ email = base64.b64decode(encoded_email).decode()
 if check_value_exists("email", email) == True:
 
     # Get the specific user information from the database
-    user_data = db.get(st.session_state.key_db)
+    content = db.fetch().items
+    index = find_dictionary_index(content, email)
+    key_db = content[index]['key']
+    user_data = db.get(key_db)
+    st.write(user_data)
 
     st.title("Memberships")
 
