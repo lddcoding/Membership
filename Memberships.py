@@ -74,7 +74,7 @@ if check_value_exists("email", email) == True:
         st.subheader('Monthly Membership:')
         st.write('Get access for ...')
         session_monthly = create_checkout_session('price_1NLE87B82uB4EE73r80KE89a', user_data['email'])
-        streamlit.button('Open link', on_click=open_page(session_monthly.url))
+        st.button('Open link', on_click=open_page(session_monthly.url))
         #st.markdown(f'<a href="{session_monthly.url}" target="_blank">Open URL</a>', unsafe_allow_html=True)
         
 
