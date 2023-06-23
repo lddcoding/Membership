@@ -1,9 +1,7 @@
 import streamlit as st
-from streamlit import components
 import base64
 import stripe
 from deta import Deta
-import webbrowser
 from streamlit.components.v1 import html
 
 # Initialize the connection to the detabase and stripe for payments
