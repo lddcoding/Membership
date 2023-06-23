@@ -4,6 +4,7 @@ import base64
 import stripe
 from deta import Deta
 import webbrowser
+from streamlit.components.v1 import html
 
 # Initialize the connection to the detabase and stripe for payments
 detakey = 'b0gyysefask_b6YH6nraDHXYtt7dG7fb5boNjqQDPPtS'
@@ -41,6 +42,14 @@ def find_dictionary_index(dictionaries, email):
             return index
     return -1
 
+def open_page(url):
+    open_script= """
+        <script type="text/javascript">
+            window.open('%s', '_blank').focus();
+        </script>
+    """ % (url)
+    html(open_script)
+
 
 # Extract the encoded email and password from the URL parameters
 encoded_email = st.experimental_get_query_params().get("email", [""])[0]
@@ -65,7 +74,8 @@ if check_value_exists("email", email) == True:
         st.subheader('Monthly Membership:')
         st.write('Get access for ...')
         session_monthly = create_checkout_session('price_1NLE87B82uB4EE73r80KE89a', user_data['email'])
-        st.markdown(f'<a href="{session_monthly.url}" target="_blank">Open URL</a>', unsafe_allow_html=True)
+        streamlit.button('Open link', on_click=open_page(session_monthly.url))
+        #st.markdown(f'<a href="{session_monthly.url}" target="_blank">Open URL</a>', unsafe_allow_html=True)
         
 
 
