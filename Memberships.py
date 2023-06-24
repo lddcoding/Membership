@@ -82,7 +82,8 @@ if check_value_exists("email", email) == True:
         st.subheader('Annualy Membership:')
         st.write('Get access for ...')
         session_annualy = create_checkout_session('price_1NLE8KB82uB4EE73Tph9Qghz', user_data['email'])
-        st.button('Open link', on_click=open_page(session_annualy.url), key=2)
+        if st.button('Open link', key=2):
+            open_page(session_annualy.url)
         
 
 else:
