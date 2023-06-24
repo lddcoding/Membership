@@ -72,7 +72,8 @@ if check_value_exists("email", email) == True:
         st.subheader('Monthly Membership:')
         st.write('Get access for ...')
         session_monthly = create_checkout_session('price_1NLE87B82uB4EE73r80KE89a', user_data['email'])
-        st.button('Open link', on_click=open_page(session_monthly.url), key='1')
+        if st.button('Open link', key=1):
+            open_page(session_monthly.url)
             
         
 
@@ -81,7 +82,7 @@ if check_value_exists("email", email) == True:
         st.subheader('Annualy Membership:')
         st.write('Get access for ...')
         session_annualy = create_checkout_session('price_1NLE8KB82uB4EE73Tph9Qghz', user_data['email'])
-        st.button('Open link', on_click=open_page(session_annualy.url), key='2')
+        st.button('Open link', on_click=open_page(session_annualy.url), key=2)
         
 
 else:
