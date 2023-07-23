@@ -4,6 +4,15 @@ import stripe
 from deta import Deta
 from streamlit.components.v1 import html
 
+hide_st_style = """
+            <style>
+            #MainMenu {visibility: hidden;}
+            footer {visibility: hidden;}
+            header {visibility: hidden;}
+            </style>
+            """
+st.markdown(hide_st_style, unsafe_allow_html=True)
+
 # Initialize the connection to the detabase and stripe for payments
 detakey = 'b0gyysefask_b6YH6nraDHXYtt7dG7fb5boNjqQDPPtS'
 deta = Deta(detakey)
